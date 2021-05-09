@@ -4,7 +4,7 @@
 
     1. composer install
     2. npm install
-    3. copy nul .env.example .env 
+    3. copy .env.example .env 
         then setup database connection
     4. php artisan key:generate
     5. php artisan migrate
