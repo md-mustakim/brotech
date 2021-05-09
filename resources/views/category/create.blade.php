@@ -64,9 +64,16 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('category.edit', $category->id) }}" >
-                                           Delete
-                                        </a>
+                                        @if(count($category->product) == 0)
+                                            <form class="" action="{{route('category.destroy', $category->id)}}" method="post" id="deleteProduct">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn">delete</button>
+                                            </form>
+                                        @else
+                                            <button onclick="alert('Please Delete All product under this category first')">delete</button>
+                                        @endif
+
                                     </td>
                                 </tr>
                             @endforeach

@@ -32,6 +32,8 @@
                                 <p class="font-weight-bold h5 text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+
+
                             <div class="">
                                 <label for="details">Products Details*</label>
                                 <textarea name="details" class="form-control @error('details') is-invalid @enderror" id="details" cols="30" rows="10" placeholder="About Category"></textarea>
@@ -39,6 +41,29 @@
                                 <p class="font-weight-bold h5 text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+
+
+                            <div class="">
+                                <label for="price">Product price*</label>
+                                <input type="number"
+                                       class="form-control @error('price') is-invalid @enderror"
+                                       name="price" id="price" placeholder="Add price">
+                                @error('price')
+                                <p class="font-weight-bold h5 text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="">
+                                <label for="stock">Product stock*</label>
+                                <input type="number"
+                                       class="form-control @error('name') is-invalid @enderror"
+                                       name="stock" id="stock"
+                                       placeholder="Add stock">
+                                @error('stock')
+                                <p class="font-weight-bold h5 text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+
                             <div class="">
                                 <label for="image">Product Image</label>
                                 <input type="file" name="image" id="name" class="form-control-file">
@@ -55,35 +80,6 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header card-header-primary">
-                    <div class="card-title">Created Category list</div>
-                </div>
-                <div class="card-body">
-                    @if(count($categories) > 0)
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($categories as $category)
-                                <tr>
-                                    <td>{{ $category->id }}</td>
-                                    <td>{{ $category->name }}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @else
-                        <div class="d-flex justify-content-center">
-                            No category Created
-                        </div>
-                    @endif
-                </div>
-            </div>
         </div>
     </div>
 @endsection

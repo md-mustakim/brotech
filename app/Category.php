@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static create(array $attributes)
@@ -15,8 +15,8 @@ class Category extends Model
         'details'
     ];
 
-    public function product(): HasOne
+    public function product(): HasMany
     {
-        return $this->hasOne(Product::class);
+        return $this->hasMany(Product::class);
     }
 }

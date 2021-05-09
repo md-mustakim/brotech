@@ -27,7 +27,7 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="" class="simple-text logo-normal">
+        <div class="logo"><a href="{{ route('welcome') }}" class="simple-text logo-normal">
                 {{ config('app.name') }}
             </a></div>
         <div class="sidebar-wrapper">
@@ -236,8 +236,7 @@
             </li>
         </ul>
     </div>
-</div>
-<!--   Core JS Files   -->
+</div><!--   Core JS Files   -->
 <script src="{{ asset('assets/js/core/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/bootstrap-material-design.min.js') }}"></script>
@@ -280,7 +279,6 @@
 <script src="{{ asset('assets/js/material-dashboard.js?v=2.1.2') }}" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('assets/demo/demo.js') }}"></script>
-@stack('js')
 <script>
     $(document).ready(function() {
         $().ready(function() {
@@ -459,6 +457,7 @@
 
     });
 </script>
+@stack('js')
 </body>
 
 </html>

@@ -14,6 +14,11 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
+
+    public function home()
+    {
+        return view('welcome', ['products' => Product::all(), 'categories' => Category::all()]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,6 +52,8 @@ class ProductController extends Controller
             'category_id' => 'required',
             'name' => 'required',
             'details' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg|max:2048'
         ]);
 
@@ -76,11 +83,11 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Product $product
-     * @return Response
+     * @return Application|Factory|View
      */
     public function edit(Product $product)
     {
-        //
+       return view('product.edit', ['product' => $product, 'categories' => Category::all()]);
     }
 
     /**
@@ -88,11 +95,26 @@ class ProductController extends Controller
      *
      * @param Request $request
      * @param Product $product
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product): RedirectResponse
     {
-        //
+        $attributes = $request->validate([
+            'category_id' => 'required',
+            'name' => 'required',
+            'details' => 'required',
+            'price' => 'required',
+            'stock' => 'required'
+        ]);
+
+        if ($request->hasFile('image')){
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $attributes['image'] = 'images/'.$imageName;
+        }
+
+        $product->update($attributes);
+        return redirect()->route('product.index')->with('message', 'update success');
     }
 
     /**
